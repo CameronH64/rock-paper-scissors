@@ -4,19 +4,6 @@
 import socket
 import threading
 
-# -------------------------- SERVER-SIDE SETUP --------------------------
-
-HEADER = 64
-PORT = 5050
-SERVER = socket.gethostbyname(socket.gethostname())         # Will get the IP Address of this computer. If a VPN is used, will use that IP address instead.
-ADDR = (SERVER, PORT)
-FORMAT = 'utf-8'
-DISCONNECT_MESSAGE = "DISCONNECT"
-
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind(ADDR)
-
-
 # -------------------------- SERVER-SIDE --------------------------
 
 def handle_client(connection, address):
@@ -51,5 +38,22 @@ def start_server():
         print(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}")
 
 
-print("[STARTING] server is starting...")
-start_server()
+
+
+if __name__ == '__main__':
+
+    # -------------------------- SERVER-SIDE SETUP --------------------------
+
+    HEADER = 64
+    PORT = 5050
+    SERVER = socket.gethostbyname(
+        socket.gethostname())  # Will get the IP Address of this computer. If a VPN is used, will use that IP address instead.
+    ADDR = (SERVER, PORT)
+    FORMAT = 'utf-8'
+    DISCONNECT_MESSAGE = "DISCONNECT"
+
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind(ADDR)
+
+    print("[STARTING] server is starting...")
+    start_server()

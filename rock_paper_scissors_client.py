@@ -33,8 +33,9 @@ def send(message):
 
 
 
-send("Hello World!")
-input()
-send("Hey, listen!")
+if __name__ == '__main__':
+    send("Hello World!")
+    input()
+    send("Hey, listen!")
 
-send(DISCONNECT_MESSAGE)
+    send(DISCONNECT_MESSAGE)
