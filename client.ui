@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="close_button">
    <property name="geometry">
     <rect>
      <x>370</x>
@@ -26,7 +26,7 @@
     <string>Close</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="attack_button">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -39,7 +39,7 @@
     <string>Attack</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton">
+  <widget class="QRadioButton" name="bulbasaur_radio_button">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -52,7 +52,7 @@
     <string>Bulbasaur</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_2">
+  <widget class="QRadioButton" name="charmander_radio_button">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -65,7 +65,7 @@
     <string>Charmander</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_3">
+  <widget class="QRadioButton" name="squirtle_radio_button">
    <property name="geometry">
     <rect>
      <x>550</x>
@@ -78,7 +78,7 @@
     <string>Squirtle</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="bulbasaur_label">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -97,7 +97,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="charmander_label">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -116,7 +116,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="squirtle_label">
    <property name="geometry">
     <rect>
      <x>520</x>
@@ -135,7 +135,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="connect_to_server_button">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -148,7 +148,7 @@
     <string>Connect to Server</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="server_address_textfield">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -158,7 +158,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="server_address_label">
    <property name="geometry">
     <rect>
      <x>190</x>
@@ -171,7 +171,7 @@
     <string>Server Address: </string>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="plainTextEdit">
+  <widget class="QPlainTextEdit" name="client_log_textarea">
    <property name="geometry">
     <rect>
      <x>190</x>
@@ -181,7 +181,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="new_game_button">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -197,7 +197,7 @@
     <string>New Game</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QPushButton" name="enter_button">
    <property name="geometry">
     <rect>
      <x>420</x>
@@ -210,7 +210,7 @@
     <string>Enter</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QLabel" name="connection_status_label">
    <property name="geometry">
     <rect>
      <x>260</x>
@@ -223,7 +223,7 @@
     <string>Connection Status: </string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_7">
+  <widget class="QLabel" name="status_label">
    <property name="geometry">
     <rect>
      <x>370</x>
