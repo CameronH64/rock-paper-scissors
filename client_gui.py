@@ -7,7 +7,7 @@ class Ui_Dialog(object):
     def __init__(self):
         self.status_label = None
         self.connection_status_label = None
-        self.enter_button = None
+        # self.enter_button = None
         self.new_game_button = None
         self.client_log_textarea = None
         self.server_address_label = None
@@ -74,6 +74,8 @@ class Ui_Dialog(object):
         self.connect_to_server_button.setGeometry(QtCore.QRect(240, 220, 111, 23))
         self.connect_to_server_button.setObjectName("connect_to_server_button")
         self.connect_to_server_button.clicked.connect(lambda: self.rps_client.setup_client(self.server_address_textfield.text()))
+        self.connect_to_server_button.clicked.connect(lambda: self.status_label.setStyleSheet("QLabel { color: green }"))
+        self.connect_to_server_button.clicked.connect(lambda: self.status_label.setText("Connected"))
 
         self.server_address_textfield = QtWidgets.QLineEdit(Dialog)
         self.server_address_textfield.setGeometry(QtCore.QRect(300, 40, 101, 20))
@@ -92,9 +94,9 @@ class Ui_Dialog(object):
         self.new_game_button.setGeometry(QtCore.QRect(370, 450, 141, 23))
         self.new_game_button.setObjectName("new_game_button")
 
-        self.enter_button = QtWidgets.QPushButton(Dialog)
-        self.enter_button.setGeometry(QtCore.QRect(420, 40, 111, 23))
-        self.enter_button.setObjectName("enter_button")
+        # self.enter_button = QtWidgets.QPushButton(Dialog)
+        # self.enter_button.setGeometry(QtCore.QRect(420, 40, 111, 23))
+        # self.enter_button.setObjectName("enter_button")
 
         self.connection_status_label = QtWidgets.QLabel(Dialog)
         self.connection_status_label.setGeometry(QtCore.QRect(260, 70, 101, 16))
@@ -119,7 +121,7 @@ class Ui_Dialog(object):
         self.connect_to_server_button.setText(_translate("Dialog", "Connect to Server"))
         self.server_address_label.setText(_translate("Dialog", "Server Address: "))
         self.new_game_button.setText(_translate("Dialog", "New Game"))
-        self.enter_button.setText(_translate("Dialog", "Enter"))
+        # self.enter_button.setText(_translate("Dialog", "Enter"))
         self.connection_status_label.setText(_translate("Dialog", "Connection Status: "))
         self.status_label.setText(_translate("Dialog", "Disconnected"))
 
