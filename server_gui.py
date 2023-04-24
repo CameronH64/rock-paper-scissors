@@ -15,6 +15,7 @@ class Ui_Dialog(object):
         self.server_log_textarea = None
         self.close_server_button = None
         self.start_server_button = None
+
         self.rps_server = Server()
 
 
