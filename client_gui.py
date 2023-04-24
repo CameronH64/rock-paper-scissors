@@ -13,12 +13,12 @@ class Ui_Dialog(object):
         self.server_address_label = None
         self.server_address_textfield = None
         self.connect_to_server_button = None
-        self.squirtle_label = None
-        self.charmander_label = None
-        self.bulbasaur_label = None
-        self.squirtle_radio_button = None
-        self.charmander_radio_button = None
-        self.bulbasaur_radio_button = None
+        self.scissors_label = None
+        self.paper_label = None
+        self.rock_label = None
+        self.rock_radio_button = None
+        self.paper_radio_button = None
+        self.scissors_radio_button = None
         self.attack_button = None
         self.close_button = None
 
@@ -37,38 +37,38 @@ class Ui_Dialog(object):
         self.attack_button.setGeometry(QtCore.QRect(200, 450, 141, 23))
         self.attack_button.setObjectName("attack_button")
 
-        self.bulbasaur_radio_button = QtWidgets.QRadioButton(Dialog)
-        self.bulbasaur_radio_button.setGeometry(QtCore.QRect(90, 420, 131, 17))
-        self.bulbasaur_radio_button.setObjectName("bulbasaur_radio_button")
+        self.scissors_radio_button = QtWidgets.QRadioButton(Dialog)
+        self.scissors_radio_button.setGeometry(QtCore.QRect(90, 420, 131, 17))
+        self.scissors_radio_button.setObjectName("scissors_radio_button")
 
-        self.charmander_radio_button = QtWidgets.QRadioButton(Dialog)
-        self.charmander_radio_button.setGeometry(QtCore.QRect(310, 420, 131, 17))
-        self.charmander_radio_button.setObjectName("charmander_radio_button")
+        self.paper_radio_button = QtWidgets.QRadioButton(Dialog)
+        self.paper_radio_button.setGeometry(QtCore.QRect(310, 420, 131, 17))
+        self.paper_radio_button.setObjectName("paper_radio_button")
 
-        self.squirtle_radio_button = QtWidgets.QRadioButton(Dialog)
-        self.squirtle_radio_button.setGeometry(QtCore.QRect(550, 420, 131, 17))
-        self.squirtle_radio_button.setObjectName("squirtle_radio_button")
+        self.rock_radio_button = QtWidgets.QRadioButton(Dialog)
+        self.rock_radio_button.setGeometry(QtCore.QRect(550, 420, 131, 17))
+        self.rock_radio_button.setObjectName("rock_radio_button")
 
-        self.bulbasaur_label = QtWidgets.QLabel(Dialog)
-        self.bulbasaur_label.setGeometry(QtCore.QRect(70, 290, 131, 121))
-        self.bulbasaur_label.setText("")
-        self.bulbasaur_label.setPixmap(QtGui.QPixmap("assets/bulbasaur.png"))
-        self.bulbasaur_label.setScaledContents(True)
-        self.bulbasaur_label.setObjectName("bulbasaur_label")
+        self.rock_label = QtWidgets.QLabel(Dialog)
+        self.rock_label.setGeometry(QtCore.QRect(70, 290, 131, 121))
+        self.rock_label.setText("")
+        self.rock_label.setPixmap(QtGui.QPixmap("assets/rock.jpg"))
+        self.rock_label.setScaledContents(True)
+        self.rock_label.setObjectName("rock_label")
 
-        self.charmander_label = QtWidgets.QLabel(Dialog)
-        self.charmander_label.setGeometry(QtCore.QRect(300, 260, 171, 161))
-        self.charmander_label.setText("")
-        self.charmander_label.setPixmap(QtGui.QPixmap("assets/charmander.png"))
-        self.charmander_label.setScaledContents(True)
-        self.charmander_label.setObjectName("charmander_label")
+        self.paper_label = QtWidgets.QLabel(Dialog)
+        self.paper_label.setGeometry(QtCore.QRect(300, 260, 171, 161))
+        self.paper_label.setText("")
+        self.paper_label.setPixmap(QtGui.QPixmap("assets/paper.jpg"))
+        self.paper_label.setScaledContents(True)
+        self.paper_label.setObjectName("paper_label")
 
-        self.squirtle_label = QtWidgets.QLabel(Dialog)
-        self.squirtle_label.setGeometry(QtCore.QRect(520, 260, 161, 161))
-        self.squirtle_label.setText("")
-        self.squirtle_label.setPixmap(QtGui.QPixmap("assets/squirtle.png"))
-        self.squirtle_label.setScaledContents(True)
-        self.squirtle_label.setObjectName("squirtle_label")
+        self.scissors_label = QtWidgets.QLabel(Dialog)
+        self.scissors_label.setGeometry(QtCore.QRect(520, 260, 161, 161))
+        self.scissors_label.setText("")
+        self.scissors_label.setPixmap(QtGui.QPixmap("assets/scissors.png"))
+        self.scissors_label.setScaledContents(True)
+        self.scissors_label.setObjectName("scissors_label")
 
         self.connect_to_server_button = QtWidgets.QPushButton(Dialog)
         self.connect_to_server_button.setGeometry(QtCore.QRect(240, 220, 111, 23))
@@ -115,9 +115,9 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.close_button.setText(_translate("Dialog", "Close"))
         self.attack_button.setText(_translate("Dialog", "Attack"))
-        self.bulbasaur_radio_button.setText(_translate("Dialog", "Bulbasaur"))
-        self.charmander_radio_button.setText(_translate("Dialog", "Charmander"))
-        self.squirtle_radio_button.setText(_translate("Dialog", "Squirtle"))
+        self.scissors_radio_button.setText(_translate("Dialog", "Rock"))
+        self.paper_radio_button.setText(_translate("Dialog", "Paper"))
+        self.rock_radio_button.setText(_translate("Dialog", "Scissors"))
         self.connect_to_server_button.setText(_translate("Dialog", "Connect to Server"))
         self.server_address_label.setText(_translate("Dialog", "Server Address: "))
         self.new_game_button.setText(_translate("Dialog", "New Game"))
