@@ -10,18 +10,23 @@ class Client:
 
     def __init__(self):
 
+        # Set basic variables.
         self.HEADER = 64                             # Header size
         self.PORT = 5050                             # Port number to use the socket on.
         self.FORMAT = 'utf-8'                        # Format to encode data in.
         self.DISCONNECT_MESSAGE = "DISCONNECT"                           # The message needed to disconnect from the server.
-        self.SERVER = input('Enter the server\'s IP address: ')          # Empty for now because I'm not  for now. Needs to contain the IP Address of the server.
-        self.ADDR = (self.SERVER, self.PORT)
+
+        # self.SERVER = input('Enter the server\'s IP address: ')          # Empty for now because I'm not  for now. Needs to contain the IP Address of the server.
+        self.ADDR = None
+        self.client = None
+
+    # -------------------------- CLIENT-SIDE --------------------------
+
+    def setup_client(self, ip_address):
+        self.ADDR = (ip_address, self.PORT)
 
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.client.connect(self.ADDR)
-
-
-    # -------------------------- CLIENT-SIDE --------------------------
 
     # Send a message to the server.
     def send(self, message):

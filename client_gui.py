@@ -73,7 +73,8 @@ class Ui_Dialog(object):
         self.connect_to_server_button = QtWidgets.QPushButton(Dialog)
         self.connect_to_server_button.setGeometry(QtCore.QRect(240, 220, 111, 23))
         self.connect_to_server_button.setObjectName("connect_to_server_button")
-        
+        self.connect_to_server_button.clicked.connect(lambda: self.rps_client.setup_client(self.server_address_textfield.text()))
+
         self.server_address_textfield = QtWidgets.QLineEdit(Dialog)
         self.server_address_textfield.setGeometry(QtCore.QRect(300, 40, 101, 20))
         self.server_address_textfield.setObjectName("server_address_textfield")
