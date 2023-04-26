@@ -21,6 +21,8 @@ server.bind(ADDR)
 
 # -------------------------- SERVER-SIDE --------------------------
 
+gameplay_list = []
+
 def handle_client(connection, address):
     print(f"[SERVER] NEW CONNECTION: {address} CONNECTED.")
 
@@ -46,23 +48,21 @@ def handle_client(connection, address):
                 server_running = False
             elif message == 'rock':
                 print('[SERVER] RECEIVED ROCK')
-                connection.send(f"Message received: {message}".encode(FORMAT))
+                gameplay_list.append('rock')
                 action_counter += 1
             elif message == 'paper':
                 print('[SERVER] RECEIVED PAPER')
-                connection.send(f"Message received: {message}".encode(FORMAT))
+                gameplay_list.append('paper')
                 action_counter += 1
             elif message == 'scissors':
                 print('[SERVER] RECEIVED SCISSORS')
-                connection.send(f"Message received: {message}".encode(FORMAT))
+                gameplay_list.append('scissors')
                 action_counter += 1
 
 
             # After client information is received, check if enough data to make a game judgment.
-            if action_counter % 2 == 0:
+            if action_counter == 5:
                 print('Do rps comparison')
-            elif action_counter % 2 == 1:
-                print('Do NOT do rps comparison')
 
 
             print(f"[{address}] {message}")         # Debugging
