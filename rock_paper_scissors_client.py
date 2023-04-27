@@ -12,11 +12,11 @@ import threading
 # Send a message to the server.
 def send(message, client):
 
-    message = message.encode('utf-8')                        # Encode the string in utf-8 format.
+    message = message.encode('utf-8')                   # Encode the string in utf-8 format.
     client.send(message)                                # Send to the server the actual message.
 
 
-
+# For when the server sends the client a message.
 def handle_message_from_server(address, PORT):
     # create a TCP/IP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -25,9 +25,9 @@ def handle_message_from_server(address, PORT):
     server_address = (address, PORT)
     sock.connect(server_address)
 
+    # Receive data from the server. In a try-catch because it could fail.
+    data = sock.recv(1024)              # Blocks the code.
     try:
-        # Receive data from the server.
-        data = sock.recv(1024)              # Blocks the code.
         return data.decode('utf-8')
     finally:
         # close the socket
@@ -37,8 +37,10 @@ def handle_message_from_server(address, PORT):
 
 # ------------------------- SETUP CLIENT STUFF --------------------------
 
+# Is run for the client to connect to the server.
 def setup_client(ip_address, port_number):
 
+    # A global client variable so that it can be accessed anywhere.
     global client
 
     connection_information = (ip_address, port_number)              # Create a tuple that has the IP address and port number to connect to the server.
@@ -48,30 +50,24 @@ def setup_client(ip_address, port_number):
 
     return client
 
-
+# Start the thread. Run whenever the connect button on the client is pressed.
 def start_client_setup_thread(server_address_textfield, connection_status):
 
+    # Get the text (the IP address) out of the textarea.
     ip_address = server_address_textfield.get("1.0", 'end-1c')      # Get the text (IP address) out of the textfield.
 
+    # Setup the client using the ip address of the server and port number.
     client = setup_client(ip_address, 5050)
     connection_status.config(text='Connected!')
-
-    return client
-
-    # send('message', client)
-
-
-
-# -------------------------- THREADING --------------------------------
-
-# client_object = threading.Thread(target=setup_client)
 
 
 # ------------------------ CREATE CLIENT GUI STUFF ------------------------
 
+# Instantiate a basic Tkinter window.
 root = Tk()
 root.geometry('500x800')
 
+# Instantiate GUI components
 server_address_label = Label(root, text='Server Address')
 server_address_textfield = Text(root, height=1, width=20)
 connection_status = Label(root, text='Disconnected')
@@ -94,7 +90,7 @@ scissors_image = Image.open('assets/scissors.png')
 scissors_image_tk = ImageTk.PhotoImage(scissors_image)
 scissors_button = Button(root, image=scissors_image_tk, command=lambda: send('scissors', client))
 
-
+# Add components to the GUI
 server_address_label.grid(row=0, column=0)
 server_address_textfield.grid(row=0, column=1)
 connect_button.grid(row=1, column=0)
@@ -105,4 +101,5 @@ paper_button.grid(row=5, column=0)
 scissors_button.grid(row=6, column=0)
 client_quit_button.grid(row=7, column=0)
 
+# Show the GUI
 root.mainloop()

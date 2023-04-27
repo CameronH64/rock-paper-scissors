@@ -5,27 +5,21 @@ import socket
 import threading
 from tkinter import *
 
-# -------------------------- SERVER-SIDE SETUP --------------------------
-
-client_list = []
-player1_choices = []
-player2_choices = []
-
 # -------------------------- SERVER SETUP --------------------------
 
-def start_server(SERVER, PORT):
+# Starts the server, taking in the
+def start_server(server_ip, port_number):
 
+    # Server variable setup.
     server_running = True
     client_list = []
 
     # Instantiate the server.
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-
-    server.bind((SERVER, PORT))
+    server.bind((server_ip, port_number))
 
     server.listen()
-    print(f"[LISTENING] SERVER IS LISTENING ON: {SERVER}")
+    print(f"[LISTENING] SERVER IS LISTENING ON: {server_ip}")
 
     while server_running:
         client_connection, addr = server.accept()                                            # Accept any and all new client socket connections.
@@ -43,7 +37,6 @@ def handle_client(client_connection, address):
     print(f"[SERVER] NEW CONNECTION: {address} CONNECTED.")
 
     server_running = True
-
     action_counter = 0
 
     while server_running:
@@ -65,7 +58,6 @@ def handle_client(client_connection, address):
                 print('[SERVER] RECEIVED SCISSORS')
                 action_counter += 1
 
-
             # After client information is received, check if enough data to make a game judgment.
             if action_counter == 1:
                 print('ROUND 1')
@@ -74,28 +66,30 @@ def handle_client(client_connection, address):
             if action_counter == 5:
                 print('ROUND 3')
 
-
-            print(f"[{address}] {message}")         # Debugging
+            # Debugging
+            print(f"[{address}] {message}")
             client_connection.send(f"Message received: {message}".encode('utf-8'))
-
-    client_connection.close_everything()
+    #
+    # client_connection.close_everything()
 
 
 
 # ------------------- RUNNING CODE -----------------------
 
-
+# Start the server thread. Is run whenever the "Start Server" button is pressed.
 def start_start_server_thread(server_textarea):
 
+    # Variable setup for the server.
     PORT = 5050
-    SERVER = socket.gethostbyname(socket.gethostname())             # Will get the IP Address of this computer. If a VPN is used, will use that IP address instead.
+    server_ip = socket.gethostbyname(socket.gethostname())             # Will get the IP Address of this computer. If a VPN is used, will use that IP address instead.
 
     # Run the server_thread method
-    server_thread = threading.Thread(target=start_server, args=(SERVER, PORT)).start()
-
+    threading.Thread(target=start_server, args=(server_ip, PORT)).start()
 
     # Run the handle_client method.
     threading.Thread(target=handle_client, args=())
+
+    # Show that the server is started on the GUI.
     server_textarea.insert(INSERT, 'Server started.\n')
 
 
@@ -115,7 +109,6 @@ root.title('Server GUI')
 # Instantiate components
 server_log_label = Label(root, text='Server Log')
 server_textarea = Text(root, height=20, width=40)
-
 start_server_button = Button(root, text='Start Server', command=lambda: start_start_server_thread(server_textarea))
 exit_program_button = Button(root, text='Exit', command=close_everything)
 
@@ -125,6 +118,7 @@ server_textarea.grid(row=1, column=0)
 start_server_button.grid(row=2, column=0)
 exit_program_button.grid(row=3, column=0)
 
+# Show the GUI
 root.mainloop()
 
 
