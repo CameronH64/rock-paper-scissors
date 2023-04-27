@@ -77,6 +77,7 @@ server_address_textfield = Text(root, height=1, width=20)
 connection_status = Label(root, text='Disconnected')
 connect_button = Button(root, text='Connect', command=lambda: start_client_setup_thread(server_address_textfield, connection_status))
 client_win_lose = Label(root, text='Win/lose: pending')
+client_quit_button = Button(root, text="Quit", command=root.destroy)
 
 # Rock setup
 rock_image = Image.open('assets/rock.png')
@@ -86,12 +87,12 @@ rock_button = Button(root, image=rock_image_tk, command=lambda: send('rock', cli
 # Paper setup
 paper_image = Image.open('assets/paper.png')
 paper_image_tk = ImageTk.PhotoImage(paper_image)
-paper_button = Button(root, image=paper_image_tk)
+paper_button = Button(root, image=paper_image_tk, command=lambda: send('paper', client))
 
 # Scissors setup
 scissors_image = Image.open('assets/scissors.png')
 scissors_image_tk = ImageTk.PhotoImage(scissors_image)
-scissors_button = Button(root, image=scissors_image_tk)
+scissors_button = Button(root, image=scissors_image_tk, command=lambda: send('scissors', client))
 
 
 server_address_label.grid(row=0, column=0)
@@ -102,5 +103,6 @@ client_win_lose.grid(row=3, column=0)
 rock_button.grid(row=4, column=0)
 paper_button.grid(row=5, column=0)
 scissors_button.grid(row=6, column=0)
+client_quit_button.grid(row=7, column=0)
 
 root.mainloop()

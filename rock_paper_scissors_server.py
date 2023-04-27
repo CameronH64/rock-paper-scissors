@@ -7,18 +7,13 @@ from tkinter import *
 
 # -------------------------- SERVER-SIDE SETUP --------------------------
 
-
-
-# -------------------------- SERVER-SIDE --------------------------
-
-gameplay_list = []
-
-
+client_list = []
+player1_choices = []
+player2_choices = []
 
 # -------------------------- SERVER SETUP --------------------------
 
 def start_server(SERVER, PORT):
-
 
     server_running = True
     client_list = []
@@ -33,9 +28,12 @@ def start_server(SERVER, PORT):
     print(f"[LISTENING] SERVER IS LISTENING ON: {SERVER}")
 
     while server_running:
-        conn, addr = server.accept()                                            # Accept any and all new client socket connections.
-        thread = threading.Thread(target=handle_client, args=(conn, addr))      # Pass the handle_client function to a thread so that the thread the can do it.
-        thread.start()                                                          # Start that thread.
+        client_connection, addr = server.accept()                                            # Accept any and all new client socket connections.
+
+        client_list.append(client_connection)
+
+        thread = threading.Thread(target=handle_client, args=(client_connection, addr))      # Pass the handle_client function to a thread so that the thread the can do it.
+        thread.start()                                                                       # Start that thread.
 
         print(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}")           # Server-side debugging for printing the number of active socket connections.
 
@@ -53,31 +51,28 @@ def handle_client(client_connection, address):
         message = client_connection.recv(64).decode('utf-8')
 
         if message:
-            # message_length = int(message_length)
-            # message = client_connection.recv(64).decode('utf-8')
-
-
 
             # If statement that will deal with input data
             if message == 'exit':       # If the server receives the disconnect message, disconnect the client.
                 server_running = False
             elif message == 'rock':
                 print('[SERVER] RECEIVED ROCK')
-                gameplay_list.append('rock')
                 action_counter += 1
             elif message == 'paper':
                 print('[SERVER] RECEIVED PAPER')
-                gameplay_list.append('paper')
                 action_counter += 1
             elif message == 'scissors':
                 print('[SERVER] RECEIVED SCISSORS')
-                gameplay_list.append('scissors')
                 action_counter += 1
 
 
             # After client information is received, check if enough data to make a game judgment.
+            if action_counter == 1:
+                print('ROUND 1')
+            if action_counter == 3:
+                print('ROUND 2')
             if action_counter == 5:
-                print('Do rps comparison')
+                print('ROUND 3')
 
 
             print(f"[{address}] {message}")         # Debugging
