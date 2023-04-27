@@ -9,14 +9,6 @@ import threading
 
 # -------------------------- CLIENT-SIDE --------------------------
 
-def setup_client(ip_address, port_number):
-    connection_information = (ip_address, port_number)              # Create a tuple that has the IP address and port number to connect to the server.
-
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)      # Create the client socket.
-    client.connect(connection_information)                          # Connect this socket with the information above.
-
-    return client
-
 # Send a message to the server.
 def send(message, client):
 
@@ -42,19 +34,33 @@ def handle_message_from_server(address, PORT):
         sock.close()
 
 
+
+# ------------------------- SETUP CLIENT STUFF --------------------------
+
+def setup_client(ip_address, port_number):
+    connection_information = (ip_address, port_number)              # Create a tuple that has the IP address and port number to connect to the server.
+
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)      # Create the client socket.
+    client.connect(connection_information)                          # Connect this socket with the information above.
+
+    return client
+
 def start_client_setup_thread(server_address_textfield, connection_status):
 
-    ip_address = server_address_textfield.get("1.0", 'end-1c')
+    ip_address = server_address_textfield.get("1.0", 'end-1c')      # Get the text (IP address) out of the textfield.
 
     client = setup_client(ip_address, 5050)
     connection_status.config(text='Connected!')
+
+    return client
 
     # send('message', client)
 
 
 
-threading.Thread(target=setup_client, args=())
+# -------------------------- THREADING --------------------------------
 
+client_object = threading.Thread(target=setup_client)
 
 
 # ------------------------ CREATE CLIENT GUI STUFF ------------------------
@@ -66,6 +72,7 @@ server_address_label = Label(root, text='Server Address')
 server_address_textfield = Text(root, height=1, width=20)
 connection_status = Label(root, text='Disconnected')
 connect_button = Button(root, text='Connect', command=lambda: start_client_setup_thread(server_address_textfield, connection_status))
+client_win_lose = Label(root, text='Win/lose: pending')
 
 # Rock setup
 rock_image = Image.open('assets/rock.png')
@@ -87,10 +94,9 @@ server_address_label.grid(row=0, column=0)
 server_address_textfield.grid(row=0, column=1)
 connect_button.grid(row=1, column=0)
 connection_status.grid(row=2, column=0)
-rock_button.grid(row=3, column=0)
-paper_button.grid(row=4, column=0)
-scissors_button.grid(row=5, column=0)
-
-# rock_label.grid(row=3, column=0)
+client_win_lose.grid(row=3, column=0)
+rock_button.grid(row=4, column=0)
+paper_button.grid(row=5, column=0)
+scissors_button.grid(row=6, column=0)
 
 root.mainloop()

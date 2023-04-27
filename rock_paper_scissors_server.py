@@ -41,7 +41,7 @@ def start_server(SERVER, PORT):
 
 
 
-def handle_client(connection, address):
+def handle_client(client_connection, address):
     print(f"[SERVER] NEW CONNECTION: {address} CONNECTED.")
 
     server_running = True
@@ -50,11 +50,11 @@ def handle_client(connection, address):
 
     while server_running:
 
-        message_length = connection.recv(64).decode('utf-8')
+        message_length = client_connection.recv(64).decode('utf-8')
 
         if message_length:
             message_length = int(message_length)
-            message = connection.recv(message_length).decode('utf-8')
+            message = client_connection.recv(message_length).decode('utf-8')
 
 
 
@@ -81,9 +81,9 @@ def handle_client(connection, address):
 
 
             print(f"[{address}] {message}")         # Debugging
-            connection.send(f"Message received: {message}".encode('utf-8'))
+            client_connection.send(f"Message received: {message}".encode('utf-8'))
 
-    connection.close_everything()
+    client_connection.close_everything()
 
 
 
@@ -92,12 +92,8 @@ def handle_client(connection, address):
 
 def start_start_server_thread(server_textarea):
 
-    HEADER = 64
     PORT = 5050
     SERVER = socket.gethostbyname(socket.gethostname())             # Will get the IP Address of this computer. If a VPN is used, will use that IP address instead.
-    ADDR = (SERVER, PORT)
-    FORMAT = 'utf-8'
-    DISCONNECT_MESSAGE = "exit"
 
     # Run the server_thread method
     server_thread = threading.Thread(target=start_server, args=(SERVER, PORT)).start()
