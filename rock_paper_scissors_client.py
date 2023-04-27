@@ -1,7 +1,8 @@
 # Cameron Holbrook
 # UCA ID: B01257833
-import tkinter
+
 from tkinter import *
+from PIL import Image, ImageTk
 import socket
 import threading
 
@@ -41,11 +42,13 @@ def handle_message_from_server(address, PORT):
         sock.close()
 
 
-def start_client_setup_thread(server_address_textfield):
+def start_client_setup_thread(server_address_textfield, connection_status):
 
     ip_address = server_address_textfield.get("1.0", 'end-1c')
 
     client = setup_client(ip_address, 5050)
+    connection_status.config(text='Connected!')
+
     # send('message', client)
 
 
@@ -57,19 +60,36 @@ threading.Thread(target=setup_client, args=())
 # ------------------------ CREATE CLIENT GUI STUFF ------------------------
 
 root = Tk()
+root.geometry('500x800')
 
 server_address_label = Label(root, text='Server Address')
 server_address_textfield = Text(root, height=1, width=20)
-connect_button = Button(root, text='Connect', command=lambda: start_client_setup_thread(server_address_textfield))
 connection_status = Label(root, text='Disconnected')
+connect_button = Button(root, text='Connect', command=lambda: start_client_setup_thread(server_address_textfield, connection_status))
 
-# rock_photo = tkinter.PhotoImage(file='assets/rock.jpg')
-# rock_label = Label(root, image=rock_photo)
+# Rock setup
+rock_image = Image.open('assets/rock.png')
+rock_image_tk = ImageTk.PhotoImage(rock_image)
+rock_button = Button(root, image=rock_image_tk)
+
+# Paper setup
+paper_image = Image.open('assets/paper.png')
+paper_image_tk = ImageTk.PhotoImage(paper_image)
+paper_button = Button(root, image=paper_image_tk)
+
+# Scissors setup
+scissors_image = Image.open('assets/scissors.png')
+scissors_image_tk = ImageTk.PhotoImage(scissors_image)
+scissors_button = Button(root, image=scissors_image_tk)
+
 
 server_address_label.grid(row=0, column=0)
 server_address_textfield.grid(row=0, column=1)
 connect_button.grid(row=1, column=0)
 connection_status.grid(row=2, column=0)
+rock_button.grid(row=3, column=0)
+paper_button.grid(row=4, column=0)
+scissors_button.grid(row=5, column=0)
 
 # rock_label.grid(row=3, column=0)
 

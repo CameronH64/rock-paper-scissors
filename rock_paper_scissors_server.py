@@ -30,7 +30,7 @@ def start_server(SERVER, PORT):
     server.bind((SERVER, PORT))
 
     server.listen()
-    print(f"[LISTENING] SERVER IS LISTENING.{SERVER}")
+    print(f"[LISTENING] SERVER IS LISTENING ON: {SERVER}")
 
     while server_running:
         conn, addr = server.accept()                                            # Accept any and all new client socket connections.
@@ -119,6 +119,7 @@ def close_everything():
 
 root = Tk()
 root.title('Server GUI')
+# root.geometry('200x400')
 
 # Instantiate components
 server_log_label = Label(root, text='Server Log')
