@@ -38,12 +38,16 @@ def handle_message_from_server(address, PORT):
 # ------------------------- SETUP CLIENT STUFF --------------------------
 
 def setup_client(ip_address, port_number):
+
+    global client
+
     connection_information = (ip_address, port_number)              # Create a tuple that has the IP address and port number to connect to the server.
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)      # Create the client socket.
     client.connect(connection_information)                          # Connect this socket with the information above.
 
     return client
+
 
 def start_client_setup_thread(server_address_textfield, connection_status):
 
@@ -60,7 +64,7 @@ def start_client_setup_thread(server_address_textfield, connection_status):
 
 # -------------------------- THREADING --------------------------------
 
-client_object = threading.Thread(target=setup_client)
+# client_object = threading.Thread(target=setup_client)
 
 
 # ------------------------ CREATE CLIENT GUI STUFF ------------------------
@@ -77,7 +81,7 @@ client_win_lose = Label(root, text='Win/lose: pending')
 # Rock setup
 rock_image = Image.open('assets/rock.png')
 rock_image_tk = ImageTk.PhotoImage(rock_image)
-rock_button = Button(root, image=rock_image_tk)
+rock_button = Button(root, image=rock_image_tk, command=lambda: send('rock', client))
 
 # Paper setup
 paper_image = Image.open('assets/paper.png')

@@ -50,11 +50,11 @@ def handle_client(client_connection, address):
 
     while server_running:
 
-        message_length = client_connection.recv(64).decode('utf-8')
+        message = client_connection.recv(64).decode('utf-8')
 
-        if message_length:
-            message_length = int(message_length)
-            message = client_connection.recv(message_length).decode('utf-8')
+        if message:
+            # message_length = int(message_length)
+            # message = client_connection.recv(64).decode('utf-8')
 
 
 
